@@ -28,7 +28,7 @@ function App() {
     if (hasError) {
       toast.error(message, {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -37,14 +37,14 @@ function App() {
         theme: "colored",
       });
     } else {
-      toast.success(message, {
+      toast(message, {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        theme: "colored",
+        theme: "light",
       });
     }
   };
@@ -95,33 +95,22 @@ function App() {
     <>
       <div className="main my-20 flex justify-center ">
         <div className="App">
-          <div className="p-12 px-16 border-2 rounded-lg bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%  border-grey container">
-            <div className="header">
-              <h2 className="text-xl font-bold underline pb-6">
+          <div className="p-12 px-16 border-2 rounded-lg border-black container">
+            <div className="header ">
+              <h2 className="text-xl text-center font-bold underline pb-6">
                 Password Generator
               </h2>
             </div>
-            <div className="passwordInput">
-              <h3 className="px-4 text-lg">&nbsp;{password}</h3>
+            <div className="border-2 rounded border-black flex flex-wrap justify-between content-center">
+              <h3 className="break-all">{password}</h3>
+              <Button onClick={handleCopyPassword} variant="text">
+                <i
+                  className="p-0.5 fa-regular fa-clipboard"
+                  style={{ color: "black", fontSize: "20px" }}
+                ></i>
+              </Button>
             </div>
-            <Button
-              sx={{
-                background: "linear-gradient(45deg, #06b6d4, #1e40af )",
-                borderRadius: "3px",
-                border: 0,
-                color: "white",
-                boxShadow: "0 3px 5px 2px rgba(255, 51, 102, 0.3)",
-                transition: "box-shadow 0.3s ease-in-out",
-                "&:hover": {
-                  boxShadow: "0 6px 10px 4px rgba(255, 51, 102, 0.3)",
-                },
-              }}
-              onClick={handleCopyPassword}
-              variant="contained"
-            >
-              <i className=" py-2 fa-regular fa-copy"></i>
-            </Button>
-            <div className="form-group py-4">
+            <div className="form-group text-center py-4">
               <TextField
                 id="outlined-basic"
                 label="Password-Length"
@@ -134,89 +123,90 @@ function App() {
                 min="8"
               />
             </div>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={includeUpperCase}
-                    sx={{
-                      color: grey[800],
-                      "&.Mui-checked": {
-                        color: grey[900],
-                      },
-                    }}
-                  />
-                }
-                label="Include Upper Case"
-                onChange={(e) => setIncludeUpperCase(e.target.checked)}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={includeLowerCase}
-                    sx={{
-                      color: grey[800],
-                      "&.Mui-checked": {
-                        color: grey[900],
-                      },
-                    }}
-                  />
-                }
-                label="Include Lower Case"
-                onChange={(e) => setIncludeLowerCase(e.target.checked)}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={includeNumbers}
-                    sx={{
-                      color: grey[800],
-                      "&.Mui-checked": {
-                        color: grey[900],
-                      },
-                    }}
-                  />
-                }
-                label="Include Numbers"
-                onChange={(e) => setIncludeNumbers(e.target.checked)}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={includeSymbols}
-                    sx={{
-                      color: grey[800],
-                      "&.Mui-checked": {
-                        color: grey[900],
-                      },
-                    }}
-                  />
-                }
-                label="Include Symbols"
-                onChange={(e) => setIncludeSymbols(e.target.checked)}
-              />
-            </FormGroup>
-
-            <Button
-              className="my-4"
-              onClick={handleGeneratePassword}
-              variant="contained"
-              sx={{
-                background: "linear-gradient(45deg, #06b6d4, #1e40af )",
-                borderRadius: "3px",
-                border: 0,
-                color: "white",
-                height: "48px",
-                padding: "0 30px",
-                boxShadow: "0 3px 5px 2px rgba(255, 51, 102, 0.3)",
-                transition: "box-shadow 0.3s ease-in-out",
-                "&:hover": {
-                  boxShadow: "0 6px 10px 4px rgba(255, 51, 102, 0.3)",
-                },
-              }}
-            >
-              Generate Password
-            </Button>
+            <div className="flex justify-center content-center">
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={includeUpperCase}
+                      sx={{
+                        color: grey[800],
+                        "&.Mui-checked": {
+                          color: grey[900],
+                        },
+                      }}
+                    />
+                  }
+                  label="Include Upper Case"
+                  onChange={(e) => setIncludeUpperCase(e.target.checked)}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={includeLowerCase}
+                      sx={{
+                        color: grey[800],
+                        "&.Mui-checked": {
+                          color: grey[900],
+                        },
+                      }}
+                    />
+                  }
+                  label="Include Lower Case"
+                  onChange={(e) => setIncludeLowerCase(e.target.checked)}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={includeNumbers}
+                      sx={{
+                        color: grey[800],
+                        "&.Mui-checked": {
+                          color: grey[900],
+                        },
+                      }}
+                    />
+                  }
+                  label="Include Numbers"
+                  onChange={(e) => setIncludeNumbers(e.target.checked)}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={includeSymbols}
+                      sx={{
+                        color: grey[800],
+                        "&.Mui-checked": {
+                          color: grey[900],
+                        },
+                      }}
+                    />
+                  }
+                  label="Include Symbols"
+                  onChange={(e) => setIncludeSymbols(e.target.checked)}
+                />
+              </FormGroup>
+            </div>
+            <div className="flex justify-center">
+              <Button
+                onClick={handleGeneratePassword}
+                variant="contained"
+                sx={{
+                  background: "linear-gradient(45deg, #06b6d4, #1e40af )",
+                  borderRadius: "5px",
+                  marginTop: "4px",
+                  textAlign: "center",
+                  border: "2px",
+                  color: "white",
+                  transition: "box-shadow 0.3s ease-in-out",
+                  "&:hover": {
+                    boxShadow: "0 6px 10px 4px rgba(255, 51, 102, 0.3)",
+                  },
+                }}
+              >
+                Generate Password
+              </Button>
+            </div>
             <ToastContainer
               position="top-center"
               autoClose={5000}
